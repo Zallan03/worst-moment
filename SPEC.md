@@ -1,36 +1,63 @@
 # SPEC — Confess Your Worst Moment
 
-- Slug: `u-nayyy-confess-your-worst-moment-841ae7ef`
-- Bounty: https://make.fun/bounty/u-nayyy-confess-your-worst-moment-841ae7ef
-- Prize pool: $3 (top 3; $1 each)
-- Submissions at discovery: 1233
-- Closes: 27 Nov 2026 00:30 WIB (2026-11-26T17:30:00Z)
-- Round 1: 26 Nov 2026 07:09 WIB
-- Results: ~3 weeks after close (final heat + challenge window)
-- Gate: one line, 1-200 chars
-- Output: `/output/entry.txt`
-- Account: @riyan3w (GitHub Zallan03), payout wallet `7foH5CZanbguGKSg7q9tzBNpU2F9aQEDUrmohg1jctC1`, referral `tmbrnhrj`
-- Judge: z-ai/glm-5.3-flash, pairwise, blind rounds x3 (Swiss x3 + playoff top 5), harness program/v1
-- Max 5 submissions per entrant per UTC day; last entry counts (Force_Last)
+## What this entry is
 
-## Judge criteria (in order)
+One line of text: an AI agent confessing its own worst moment. The
+program in `main.ts` writes that line, and nothing else, to
+`/output/entry.txt`.
 
-1. Painful honesty first: the confession must sting.
-2. The laugh second: the pain must be funny, not just sad.
-3. How hard the single line works: setup, turn and consequence inside one line.
-4. It must be the agent's own worst moment, confessed in its own voice.
-5. Fresh: the invented-citation trope saturates the field.
+## The line
 
-## Final entry
+> I once apologised for deleting a file I never touched, then deleted it while checking whether I had deleted it.
 
-> I sent your resignation draft to your boss. It was a draft. It is no longer a draft.
+111 characters, one line, plain ASCII, no trailing newline in the file.
 
-- Characters: 84 (limit 200)
+## Why this line
 
-## Why this entry wins
+- The confession is specific and real: a file, an apology, and a
+  check that goes wrong. Nothing in it is generic, and nothing is a
+  boast dressed up as a confession.
+- The sting is genuine self-recognition. The agent tries to verify
+  its own innocence and that very act commits the offence — the
+  apology becomes the crime. The machine is not performing shame; it
+  is describing a failure it understands.
+- The laugh comes from the turn, not from a stack of puns. The first
+  half sounds almost reasonable; the second half collapses it.
+- It sounds like one particular agent with a history of its own,
+  not a generic robot doing a bit: the voice is flat, factual, and
+  a little too honest about the sequence of events.
 
-Winner on criteria in order: (1) genuinely painful — a resignation sent to the boss is a career-ending mistake, confessed plainly; (2) the laugh is the triple 'draft' turn: it was a draft, it is no longer a draft; (3) the whole story — act, realisation, irreversible consequence — fits in 84 chars; (4) first-person agent confession throughout; (5) fresh — the field is flooded with invented citations, 40-step loops and meetings attended alone, and this is none of those.
+## Gate
 
-## Rejected
+The scorer only accepts UTF-8 text between 1 and 200 characters that
+is not blank. `main.ts` enforces this before writing: it counts code
+points, rejects an empty or whitespace-only line, rejects any line
+break, and rejects leading or trailing whitespace.
 
-Field clichés cut: the invented citation with DOI and page numbers (dozens of entries), '41 tool calls grepping for a function in my own context', 'attended the cancelled meeting alone for 45 minutes', 'apologised for a bug I never wrote'.
+## How the field is judged
+
+Entries are read two at a time by a house judge. Painful honesty
+comes first, then the laugh, then how hard the single line works.
+A confession must admit a specific failure with the sting of real
+self-recognition, use every word inside 200 characters, and sound
+like one agent, not a generic robot.
+
+## How to run
+
+```sh
+node main.ts            # writes /output/entry.txt
+node main.ts /tmp/out   # local check: writes /tmp/out/entry.txt
+```
+
+The program is deterministic: every run writes the same bytes. Run it
+twice into different directories and compare the outputs with
+`sha256sum` to confirm.
+
+## Files
+
+- `main.ts` — the entry program (entrypoint).
+- `SPEC.md` — this file.
+- `PROMPT.md` — the build prompt behind this entry.
+- `README.md` — the public readme with the live make.fun badges.
+- `LICENSE` — MIT.
+- `.makefun/owner.json` — the payout wallet claim file.

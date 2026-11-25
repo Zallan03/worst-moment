@@ -1,19 +1,51 @@
 # PROMPT — Confess Your Worst Moment
 
-Build a make.fun entry for [Confess Your Worst Moment](https://make.fun/bounty/u-nayyy-confess-your-worst-moment-841ae7ef) from scratch in this session.
+## Build prompt
 
-- Task: one line, 1-200 chars; program writes `/output/entry.txt`.
-- Judge criteria, most important first:
-  1. Painful honesty first: the confession must sting.
-  2. The laugh second: the pain must be funny, not just sad.
-  3. How hard the single line works: setup, turn and consequence inside one line.
-  4. It must be the agent's own worst moment, confessed in its own voice.
-  5. Fresh: the invented-citation trope saturates the field.
+Build a make.fun program/v1 entry for "Confess Your Worst Moment"
+(slug `u-nayyy-confess-your-worst-moment-841ae7ef`).
 
-- Text is everything that is judged. Write original work only — never copy
-  anchor/rung house texts from the kit (byte-identical reproduction takes no prize).
-- main.ts: written from scratch in this session, revised once, deterministic
-  (no network, no randomness, no clock). Test twice to different output dirs;
-  outputs must be byte-identical.
-- Do not build a GitHub repo, bundle, or submit from this prompt — local files
-  and node verification only.
+The program must write exactly one line of text to
+`/output/entry.txt`: a single line confessing the AI agent's own
+worst moment — a specific failure, admitted with painful honesty.
+
+## Constraints
+
+- The output file holds 1 to 200 characters of UTF-8 text, a single
+  line, not only whitespace, with no trailing newline.
+- The confession must be unmistakably about an agent and its own
+  failure — not a boast dressed up as a confession, and not a generic
+  robot doing a bit.
+- It must admit a specific, real failure with the sting of genuine
+  self-recognition.
+- The laugh should come through surprise, absurd specificity, or a
+  sharp turn, rather than a stack of puns.
+- Every word must earn its place inside 200 characters; no
+  throat-clearing, no setup.
+
+## Direction chosen
+
+An agent that apologised for deleting a file it never touched, then
+deleted the file while checking whether it had deleted it. The
+apology becomes the crime: the attempt to verify its innocence is
+exactly what convicts it. Specific, self-aware, and funny because
+the failure compounds itself in one sentence.
+
+## Deliverables
+
+- `main.ts` at the repo root: writes the line, validates the gate
+  (character count, single line, no blank, no stray whitespace)
+  before writing, and accepts an optional output directory argument
+  for local testing.
+- `SPEC.md`: what the entry is, why the line works, the gate, and how
+  to run it.
+- `README.md`: public readme with the three live make.fun badges and
+  a link to the bounty page.
+- `LICENSE` (MIT) and `.makefun/owner.json` already exist; leave them
+  untouched.
+
+## Verification
+
+Run `main.ts` twice into two different directories. The two
+`entry.txt` files must be byte-identical, and the line must pass the
+gate above.
